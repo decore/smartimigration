@@ -25,6 +25,7 @@
 body {
   text-align: center;
   font-family: PTSansRegular, "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 .row {
@@ -227,7 +228,7 @@ header .header-footer .arrow-bottom {
 }
 
 footer {
-  padding-bottom: 138px;
+  padding-bottom: 98px;
 }
 
 footer h3 {
@@ -738,7 +739,6 @@ footer .social a svg:hover path {
 }
 
 .hex-wrap:hover .hex > div:after {
-  background-color: rgba(255, 255, 255, 0);
   -webkit-background-size: 98% 98%;
   background-size: 98% 98%;
   background-position: top 0.365em left 0.3em;
@@ -1478,13 +1478,9 @@ footer .social a svg:hover path {
   width: 100%;
 }
 
-.curators .flex h3 {
+.curators h3 {
   font-size: 22px;
   line-height: 30px;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
   padding-top: 85px;
   padding-bottom: 95px;
   margin: 0;
@@ -1503,7 +1499,7 @@ footer .social a svg:hover path {
     flex: 1 0 145px;
   }
 
-  .curators .flex h3 {
+  .curators h3 {
     font-size: 28px;
     line-height: 33px;
     padding-top: 92px;
@@ -1810,6 +1806,8 @@ footer .social a svg:hover path {
 
 .borders-in-head {
   background: url(../img/bg/borders-in-head.jpg) no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
   margin-top: 36px;
   margin-bottom: 55px;
 }
@@ -1878,7 +1876,6 @@ footer .social a svg:hover path {
 }
 
 .fixed-footer {
-  bottom: 0;
   width: 100%;
   background: #543a93;
   z-index: 10;
@@ -1886,6 +1883,7 @@ footer .social a svg:hover path {
 
 .fixed-footer.activated {
   position: fixed;
+  bottom: 0;
 }
 
 .fixed-footer .flex {
@@ -1970,6 +1968,46 @@ footer .social a svg:hover path {
   }
 }
 
+@media (min-width: 794px) and (max-width: 1280px) {
+  .fixed-footer.mozilla .flex .box .img {
+    height: 4.2rem;
+    width: 4.2rem;
+  }
+
+  .fixed-footer.mozilla .flex .box .text {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+  }
+
+  .fixed-footer.mozilla .flex .box .info .tel {
+    font-size: 1.5rem;
+  }
+
+  .fixed-footer.mozilla .flex .box .info a {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 793px) {
+  .fixed-footer.mozilla .flex .box .img {
+    height: 4.2rem;
+    width: 4.2rem;
+  }
+
+  .fixed-footer.mozilla .flex .box .text {
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+  }
+
+  .fixed-footer.mozilla .flex .box .info .tel {
+    font-size: 1.2rem;
+  }
+
+  .fixed-footer.mozilla .flex .box .info a {
+    font-size: 0.9rem;
+  }
+}
+
 .photos {
   background: #f7f7f7;
   padding: 40px 0;
@@ -2016,8 +2054,8 @@ footer .social a svg:hover path {
 
 .registration-lp {
   background: url("../img/bg/registration-lp.jpg") no-repeat;
-  -webkit-background-size: 100%;
-  background-size: 100%;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
   min-height: 650px;
   padding: 0;
 }

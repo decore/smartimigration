@@ -41,40 +41,38 @@ $(document).ready(function(){
 				};
 			};
 		} else {
+			$('body').wrapInner('<div id="zoom-wrap"></div>');
+			var viewport;
+			var zoom;
 			var scaleScreen = function(){
-				$('html').css({
+				htmlWidth = $('body').width();
+				htmlHeight = $('body').height();
+				$('body').css({
 					'transform': 'scale(1)',
 					'margin': 0
 				});
-				htmlWidth = $('html').width();
-				htmlHeight = $('html').height();
 				if ((htmlWidth > virtualViewportWidthMax) && !$.browser.msie) {
 					var zoom = htmlWidth/virtualViewportWidthMax;
-					$('html').css({
-						'transform': 'scale('+zoom+')',
-						'margin-left': -virtualViewportWidthMax * (1-zoom) / 2 + "px",
-						'margin-right': -virtualViewportWidthMax * (1-zoom) / 2 + "px",
-						'margin-top': -htmlHeight * (1-zoom) / 2
-					});
+					var viewport = virtualViewportWidthMax;
 				} else if ((htmlWidth > virtualViewportWidthPhone) && !$.browser.msie) {
 					var zoom = htmlWidth/virtualViewportWidthDesktop;
-					$('html').css({
-						'transform': 'scale('+zoom+')',
-						'margin-left': -virtualViewportWidthDesktop * (1-zoom) / 2 + "px",
-						'margin-right': -virtualViewportWidthDesktop * (1-zoom) / 2 + "px",
-						'margin-top': -htmlHeight * (1-zoom) / 2
-					});
+					var viewport = virtualViewportWidthDesktop;
 				} else if ((htmlWidth <= virtualViewportWidthPhone) && !$.browser.msie) {
 					var zoom = htmlWidth/virtualViewportWidthPhone;
-					$('html').css({
-						'transform': 'scale('+zoom+')',
-						'margin-left': -virtualViewportWidthPhone * (1-zoom) / 2 + "px",
-						'margin-right': -virtualViewportWidthPhone * (1-zoom) / 2 + "px",
-						'margin-top': -htmlHeight * (1-zoom) / 2
-					});
+					var viewport = virtualViewportWidthPhone;
 				};
+				$('body').css({
+					'transform': 'scale('+zoom+')',
+					'margin-left': -viewport * (1-zoom) / 2 + "px",
+					'margin-right': -viewport * (1-zoom) / 2 + "px",
+					'margin-top': -htmlHeight * (1-zoom) / 2,
+					'margin-bottom': -htmlHeight * (1-zoom) / 2
+				});
+				$('#zoom-wrap').css({
+					'overflow-y': 'hidden'
+				});
 			};
-		}
+		};
 		scaleScreen();
 		var resizeTimer = true;
 		$(window).on('resize', function(){
@@ -102,18 +100,32 @@ $(document).ready(function(){
 	// SCROLL ANIMATION
 	// https://github.com/matthieua/WOW
 	if (!$.browser.mozilla) {
-		setTimeout(function(){
-			var wow = new WOW(
-				{
-					boxClass: 'wow',
-					animateClass: 'animated',
-					offset: 0,
-					callback: function(box) {
-						$(box).addClass('activated');
-					}
+		var wow1 = new WOW(
+			{
+				boxClass: 'wow',
+				animateClass: 'animated',
+				offset: 0,
+				mobile: false,
+				callback: function(box) {
+					$(box).addClass('activated');
 				}
-			);
-			wow.init();
+			}
+		);
+		setTimeout(function(){
+			wow1.init();
 		}, 1000);
 	};
+	var wow2 = new WOW(
+		{
+			boxClass: 'wow-footer',
+			animateClass: 'animated',
+			offset: 0,
+			mobile: false,
+			callback: function(box) {
+				$(box).addClass('mozilla activated').appendTo('html');
+				$('body').append('<div style="height: 55px" ></div>');
+			}
+		}
+	);
+	wow2.init();
 });
