@@ -130,16 +130,21 @@ $(document).ready(function(){
 	// index-page steps
 	$('#to-1-step').click(function(e){
 		e.preventDefault();
-		$('#1-step').removeClass('hide');
+		$('#1-step').animatescroll();
+	});
+	$('#1-step .hex-wrap').click(function(){
+		$('.place-view').animatescroll();
 	});
 	$('#2-step .place-academy .button').click(function(e){
 		e.preventDefault();
 		$('#3-step').removeClass('hide');
+		$('#3-step').animatescroll();
 	});
 	$('#3-step table tbody tr').click(function(){
 		$('#4-step').removeClass('hide');
 		setTimeout(function(){
 			$(window).resize();
 		}, 10000);
+		$('#4-step').animatescroll();
 	});
 });
