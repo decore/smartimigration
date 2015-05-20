@@ -660,6 +660,11 @@ footer .social a svg:hover path {
   width: 97px;
 }
 
+.main-tabs .tabs-content .grant-table table tbody tr:hover {
+  cursor: pointer;
+  background: #EAE9E9 !important;
+}
+
 .main-tabs .tabs-content .grant-table table tbody tr td {
   line-height: 1.6rem;
   font-size: 1.05rem;
